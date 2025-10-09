@@ -1,0 +1,47 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:InventoryGui.ViewModels"
+        x:Class="InventoryGui.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Width="900" Height="520" Title="Inventory System">
+  <DockPanel Margin="16">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="12">
+      <Button Content="Processér næste ordre" Command="{Binding ProcessNextCommand}" />
+      <TextBlock Text="Total omsætning:" VerticalAlignment="Center" />
+      <TextBlock Text="{Binding TotalRevenueText}" FontWeight="Bold" VerticalAlignment="Center" />
+    </StackPanel>
+
+    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,*" Margin="0,12,0,0">
+      <TextBlock Grid.Column="0" Text="Kø (Queued)" FontWeight="Bold" />
+      <TextBlock Grid.Column="1" Text="Behandlede (Processed)" FontWeight="Bold" />
+
+      <!-- Venstre DataGrid (Queued) -->
+      <DataGrid Grid.Row="1" Grid.Column="0"
+                ItemsSource="{Binding Queued}"
+                AutoGenerateColumns="False"
+                GridLinesVisibility="All"
+                HeadersVisibility="All"
+                IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Tid" Binding="{Binding TimeText}" />
+          <DataGridTextColumn Header="Linjer" Binding="{Binding LinesText}" Width="*" />
+          <DataGridTextColumn Header="Total" Binding="{Binding TotalPriceText}" />
+        </DataGrid.Columns>
+      </DataGrid>
+
+      <!-- Højre DataGrid (Processed) -->
+      <DataGrid Grid.Row="1" Grid.Column="1"
+                ItemsSource="{Binding Processed}"
+                AutoGenerateColumns="False"
+                GridLinesVisibility="All"
+                HeadersVisibility="All"
+                IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Tid" Binding="{Binding TimeText}" />
+          <DataGridTextColumn Header="Linjer" Binding="{Binding LinesText}" Width="*" />
+          <DataGridTextColumn Header="Total" Binding="{Binding TotalPriceText}" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </Grid>
+  </DockPanel>
+</Window>
