@@ -41,7 +41,7 @@ public class StockEntry
 
 public class Inventory
 {
-    // "stock: stores for each item its amount in the inventory"
+    // "stock: Lagrer antal af hver enhed på lger"
     public List<StockEntry> Stock { get; } = new();
 
     public void Add(Item item, double amount)
@@ -59,7 +59,7 @@ public class Inventory
         return true;
     }
 
-    // "LowStockItems(): gets a collection of low stock items, e.g., less than five"
+    // "LowStockItems(): Emner med lavt lager (under 5 stk eller kg som standard)"
     public IEnumerable<StockEntry> LowStockItems(double threshold = 5) =>
         Stock.Where(s => s.Amount < threshold);
 }
@@ -111,7 +111,7 @@ public class OrderBook
 
     public void QueueOrder(Order o) => queuedOrders.Add(o); // "QueueOrder(Order)"
 
-    // "ProcessNextOrder(): removes earliest queued order and places it into processed orders"
+    // "ProcessNextOrder(): Flytter den næste ordre fra kø til behandlede ordrer"
     public Order? ProcessNextOrder(Inventory inv)
     {
         if (queuedOrders.Count == 0) return null;

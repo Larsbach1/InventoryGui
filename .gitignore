@@ -1,5 +1,14 @@
+﻿# Build artefakter
 bin/
 obj/
-/packages/
-riderModule.iml
-/_ReSharper.Caches/
+
+# IDE/Editor
+.idea/
+.vs/
+*.user
+
+# OS
+.DS_Store
+
+# Store medier
+*.mp4

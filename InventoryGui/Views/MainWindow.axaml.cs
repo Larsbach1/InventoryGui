@@ -7,7 +7,7 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        InitializeComponent(); // VIGTIGT!
+        InitializeComponent();
     }
 
     private void InitializeComponent()
