@@ -48,3 +48,28 @@ En kort video (10 sek.) viser hvordan en ordre behandles i GUI’en, og total om
 Bemærkning
 
 Fundamentet til programmet og denne ReadMe er lavet med hjælp fra AI, derefter tilpasset til opgaven.
+
+Klassediagram
+
+```mermaid
+classDiagram
+    %% --- Hierarki ---
+    Item <|-- BulkItem
+    Item <|-- UnitItem
+
+    %% --- Lager ---
+    Inventory "1" o-- "*" StockEntry : indeholder
+    StockEntry "*" --> "1" Item : refererer til
+
+    %% --- Kunde og ordrer ---
+    Customer "1" --> "*" Order : opretter
+    Order "*" o-- "*" OrderLine : består af
+    OrderLine "*" --> "1" Item : indeholder
+
+    %% --- Ordrebog ---
+    OrderBook "1" o-- "*" Order : queuedOrders / processedOrders
+
+    %% --- Økonomi og dataflow ---
+    OrderBook --> Inventory : opdaterer lager
+    OrderBook --> Customer : håndterer ordrestatus
+```
